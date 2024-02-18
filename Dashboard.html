@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediServe Dashboard</title>
+  <link rel="stylesheet" href="Styles.css">
+  
+</head>
+<body>
+  <header>
+    <h1>MediServe Dashboard</h1>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showDepartment('lab')">Laboratory Department</a></li>
+        <li><a href="#" onclick="showDepartment('rad')">Radiology Department</a></li>
+        <li><a href="#" onclick="showDepartment('pharmacy')">Pharmacy Department</a></li>
+        <li><a href="#" onclick="showDepartment('therapy')">Physical Therapy Department</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="lab" class="department">
+      <h2>Laboratory Department</h2>
+      <div id="lab-content"></div>
+    </section>
+    <section id="rad" class="department">
+      <h2>Radiology Department</h2>
+      <div id="rad-content"></div>
+    </section>
+    <section id="pharmacy" class="department">
+      <h2>Pharmacy Department</h2>
+      <div id="pharmacy-content"></div>
+    </section>
+    <section id="therapy" class="department">
+      <h2>Physical Therapy Department</h2>
+      <div id="therapy-content"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 MediServe. All rights reserved.</p>
+  </footer>
+  <script>
+    const departments = {
+      lab: {
+        equipment: [
+          { name: "Microscopes", quantity: 10 },
+          { name: "Test tubes", quantity: 20 },
+          { name: "Centrifuges", quantity: 5 }
+        ]
+      },
+      rad: {
+        equipment: [
+          { name: "X-ray machines", quantity: 8 },
+          { name: "MRI scanners", quantity: 3 },
+          { name: "Ultrasound machines", quantity: 12 }
+        ]
+      },
+      pharmacy: {
+        equipment: [
+          { name: "Medication dispensers", quantity: 15 },
+          { name: "Pharmacy scales", quantity: 7 },
+          { name: "Prescription printers", quantity: 10 }
+        ]
+      },
+      therapy: {
+        equipment: [
+          { name: "Therapeutic exercise equipment", quantity: 20 },
+          { name: "Hot/cold therapy units", quantity: 10 },
+          { name: "Traction equipment", quantity: 5 }
+        ]
+      }
+    };
+
+    function populateDepartments() {
+      for (const dept in departments) {
+        const section = document.getElementById(dept);
+        if (section) {
+          const equipmentList = departments[dept].equipment;
+
+          let html = '<h3>Equipment</h3><ul>';
+          equipmentList.forEach(item => {
+            html += `<li>${item.name} - ${item.quantity}</li>`;
+          });
+          html += '</ul>';
+
+          section.innerHTML = html;
+        }
+      }
+    }
+
+    function showDepartment(department) {
+      document.querySelectorAll('.department').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(department).classList.add('active');
+    }
+
+    populateDepartments();
+  </script>
+
+<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '7a064a6a-af38-4d29-8dac-633de303ac16', f: true }); done = true; } }; })();</script>
+</body>
+</html>
